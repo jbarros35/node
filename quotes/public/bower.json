@@ -1,0 +1,20 @@
+{
+  "name": "business-casual",
+  "description": "A starter project for AngularJS with bootstrap, Angular and Require.js",
+  "version": "0.3.0",
+  "homepage": "https://github.com/jbarros35/angular/business-casual",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "1.4.x",
+    "angular-route": "1.4.x",
+    "angular-loader": "1.4.x",
+    "angular-mocks": "~1.4.x",
+    "html5-boilerplate": "~4.3.0",
+    "requirejs-text": "2.0.x",
+    "requirejs": "2.1.x",
+    "bootstrap": "~3.3.4",
+    "angular-resource": "~1.4.0",
+    "angular-bootstrap": "~0.13.0"
+  }
+}
