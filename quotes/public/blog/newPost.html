@@ -38,20 +38,20 @@
 					   </div>
 					</div>
 
-					<div class="form-group" ng-class="{ 'has-error' : postForm.shortDescription.$invalid && !postForm.shortDescription.$pristine }">
+					<div class="form-group" ng-class="{ 'has-error' : postForm.shortdescription.$invalid && !postForm.shortdescription.$pristine }">
 				  	  <label>Short description</label>
-				      <input type="text" class="form-control" ng-model="post.shortDescription" name="shortDescription"
+				      <input type="text" class="form-control" ng-model="post.shortdescription" name="shortdescription"
 				      ng-minlength="10" ng-maxlength="100"
 				      size="30" placeholder="Short description" required>
-				       <p ng-show="postForm.shortDescription.$error.required" class="help-block">Short description is required.</p>
-				      <p ng-show="postForm.shortDescription.$error.minlength" class="help-inline">Short description is too short.</p>
-	            	  <p ng-show="postForm.shortDescription.$error.maxlength" class="help-inline">Short description is too long.</p>
+				       <p ng-show="postForm.shortdescription.$error.required" class="help-block">Short description is required.</p>
+				      <p ng-show="postForm.shortdescription.$error.minlength" class="help-inline">Short description is too short.</p>
+	            	  <p ng-show="postForm.shortdescription.$error.maxlength" class="help-inline">Short description is too long.</p>
 				   </div>
 
-					<div class="form-group" ng-class="{ 'has-error' : postForm.imageUrl.$invalid && !postForm.imageUrl.$pristine }">
+					<div class="form-group" ng-class="{ 'has-error' : postForm.imageurl.$invalid && !postForm.imageurl.$pristine }">
 				  	  <label>Image url</label>
-				      <input type="text" class="form-control" ng-maxlength="100" ng-model="post.imageUrl" name="imageUrl" size="30" placeholder="Image url">
-				      <p ng-show="postForm.imageUrl.$error.maxlength" class="help-block">Image url is too long.</p>
+				      <input type="text" class="form-control" ng-maxlength="100" ng-model="post.imageUrl" name="imageurl" size="30" placeholder="Image url">
+				      <p ng-show="postForm.imageurl.$error.maxlength" class="help-block">Image url is too long.</p>
 				   </div>
 
 					<div class="form-group" ng-class="{ 'has-error' : postForm.text.$invalid && !postForm.text.$pristine }">

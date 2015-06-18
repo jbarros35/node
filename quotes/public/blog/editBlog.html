@@ -16,27 +16,27 @@
        <tbody>
            <tr ng-repeat="tableData in tabelsData">
                <td class="col-md-8">
-                   <div ng-hide="editingData[tableData.newId]">{{tableData.title | uppercase}}</div>
-                   <div ng-show="editingData[tableData.newId]"><input type="text" class="form-control" ng-model="tableData.title" /></div>
+                   <div ng-hide="editingData[tableData.newid]">{{tableData.title | uppercase}}</div>
+                   <div ng-show="editingData[tableData.newid]"><input type="text" class="form-control" ng-model="tableData.title" /></div>
                </td>
                <td class="col-md-2">
-                   <div ng-hide="editingData[tableData.newId]">{{tableData.postDate | date: 'dd-MM-yyyy HH:mm:ss'}}
+                   <div ng-hide="editingData[tableData.newid]">{{tableData.postdate | date: 'dd-MM-yyyy HH:mm:ss'}}
                    </div>
-                   <div ng-show="editingData[tableData.newId]">
-                      <input type="date" class="form-control" ng-model="tableData.postDate" name="postDate" required/>
+                   <div ng-show="editingData[tableData.newid]">
+                      <input type="date" class="form-control" ng-model="tableData.postdate" name="postdate" required/>
                   	</div>
                </td>
 			   <td class="col-md-1" style="vertical-align: middle; text-align: center;">
-                   <input type="checkbox" ng-model="tableData.active"  ng-disabled="!editingData[tableData.newId]" />
+                   <input type="checkbox" ng-model="tableData.active"  ng-disabled="!editingData[tableData.newid]" />
                </td>
                <td class="col-md-2" style="vertical-align: middle; text-align: center;">
-                   <button ng-hide="editingData[tableData.newId]" ng-click="modify(tableData)" type="button" class="btn btn-default" aria-label="Left Align">
+                   <button ng-hide="editingData[tableData.newid]" ng-click="modify(tableData)" type="button" class="btn btn-default" aria-label="Left Align">
 					  <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 					</button>
-                   <button ng-show="editingData[tableData.newId]" ng-click="update(tableData)" class="btn btn-default">
+                   <button ng-show="editingData[tableData.newid]" ng-click="update(tableData)" class="btn btn-default">
                    	<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
                    </button>
-					<button ng-show="editingData[tableData.newId]" ng-click="remove(tableData)" class="btn btn-default">
+					<button ng-show="editingData[tableData.newid]" ng-click="remove($index)" class="btn btn-default">
                    	<span class="glyphicon glyphicon glyphicon-trash" aria-hidden="true"></span>
                    </button>
                </td>

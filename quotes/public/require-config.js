@@ -23,8 +23,7 @@ require.config({
 		'ui-bootstrap': 'bower_components/angular-bootstrap/ui-bootstrap-tpls',
 		angularMocks: 'bower_components/angular-mocks/angular-mocks',
 		'angular-resource': 'bower_components/angular-resource/angular-resource',
-		text: 'bower_components/requirejs-text/text',
-		//'jQuery': 'bower_components/jquery/dist/jquery'
+		text: 'bower_components/requirejs-text/text',		
 		'jQuery': 'assets/js/jquery'
 
 	},
@@ -62,5 +61,5 @@ require([
 );
 
 var globalConfig = {
-	    serviceURL: 'http://localhost:8080/businessdata/api'
+	    serviceURL: 'http://localhost:3000'
 	};

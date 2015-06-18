@@ -48,21 +48,20 @@ define([
 							if (data) {
 								for (var i = 0, length = data.length; i < length; i++) {
 									var blogPost = data[i];
-									 if (!angular.isDate(blogPost.postDate)) {
-										 blogPost.postDate = new Date(blogPost.postDate);
+									 if (!angular.isDate(blogPost.postdate)) {
+										 blogPost.postdate = new Date(blogPost.postdate);
 									 }
 						    	 }
 							}
 							return data;
 						},
-						//url: window.globalConfig.serviceURL+'/blognews/?size='+postsByPage+'&sort=postDate,desc&page='+page
-						url: 'http://localhost:3000/blognews'
+							url: window.globalConfig.serviceURL+'/blognews'						
 						}
 					).
 					success(function(data, status, headers, config) {
 						if (data) {
 							// update blog posts
-							$scope.tabelsData = data;
+							$scope.tabelsData = data;							
 							initTable();
 
 						} else {
@@ -88,26 +87,45 @@ define([
 		    	};
 		    	// open for editing
 			    $scope.modify = function(tableData){
-			        $scope.editingData[tableData.newId] = true;
+			        $scope.editingData[tableData.newid] = true;
 			    };
 			    // update record
 			    $scope.update = function(tableData){
-			        $scope.editingData[tableData.newId] = false;
+			        $scope.editingData[tableData.newid] = false;
 			        $http.defaults.useXDomain = true;
 					$http({
-							url: window.globalConfig.serviceURL+'/blognews/',
-							method: "POST",
+							url: window.globalConfig.serviceURL+'/blognews/'+tableData.newid,
+							method: "PUT",
 					        data: JSON.stringify(tableData),
 					        headers: {'Content-Type': 'application/json'}
 					}).
 					success(function(data, status, headers, config) {
-
+					  console.log('update'+data);
 				   }).
 					error(function(data, status, headers, config) {
 					  // log error
 					  console.log("Error "+data);
-					});
-			        console.log(tableData);
+					});			       
+			    };
+				
+				// REMOVE record
+			    $scope.remove = function(index){
+			        $scope.editingData[tableData.newid] = false;
+			        $http.defaults.useXDomain = true;
+					$http({
+							url: window.globalConfig.serviceURL+'/blognews/'+tableData.newid,
+							method: "DELETE",
+					        data: JSON.stringify(tableData),
+					        headers: {'Content-Type': 'application/json'}
+					}).
+					success(function(data, status, headers, config) {
+						$scope.tabelsData.splice(index, 1);
+						console.log('delete '+tableData.newid);
+				   }).
+					error(function(data, status, headers, config) {
+					  // log error
+					  console.log("Error "+data);
+					});			        
 			    };
 			}]
 		    };
@@ -206,7 +224,7 @@ define([
 
 				            if(dateParts && timeParts) {
 				                dateParts[1] -= 1;
-				                $scope.post.postDate = new Date(Date.UTC.apply(undefined,dateParts.concat(timeParts))).toISOString();
+				                $scope.post.postdate = new Date(Date.UTC.apply(undefined,dateParts.concat(timeParts))).toISOString();
 				            }
 				        }
 				    }
