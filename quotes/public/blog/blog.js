@@ -97,7 +97,8 @@ define([
 							url: window.globalConfig.serviceURL+'/blognews/'+tableData.newid,
 							method: "PUT",
 					        data: JSON.stringify(tableData),
-					        headers: {'Content-Type': 'application/json'}
+					        headers: {'Content-Type': 'application/json'
+								}
 					}).
 					success(function(data, status, headers, config) {
 					  console.log('update'+data);
@@ -110,6 +111,7 @@ define([
 				
 				// REMOVE record
 			    $scope.remove = function(index){
+					var tableData = $scope.tabelsData[index];
 			        $scope.editingData[tableData.newid] = false;
 			        $http.defaults.useXDomain = true;
 					$http({

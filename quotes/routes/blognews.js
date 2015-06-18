@@ -19,7 +19,7 @@ router.use(function(req, res, next) {
 
   // decode token
   if (token) {
-	var secret = require('./routes/security');
+	var secret = require('./security');
     // verifies secret and checks exp
     jwt.verify(token, secret.key, function(err, decoded) {      
       if (err) {
@@ -74,7 +74,7 @@ router.delete('/:id', function(req, res) {
 				res.json('ok');
 			});
 		} else {
-			res.json('quote not exists')
+			res.json('quote not exists');
 		}		
 	});
 });

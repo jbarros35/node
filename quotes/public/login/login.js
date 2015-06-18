@@ -35,7 +35,7 @@
 					if (res.token) {
 						$localStorage.token = res.token;
 						// redirect to home
-						window.location = "/";    
+						$location.path('/home');
 					} else {
 						$scope.message='Failed to signin, no token provided';
 						//$rootScope.error = 'Failed to signin';
@@ -60,7 +60,7 @@
                     alert(res.data)
                 } else {
                     $localStorage.token = res.data.token;
-                    window.location = "/"   
+                    $location.path('/home');   
                 }
             }, function() {
                 $rootScope.error = 'Failed to signup';
@@ -77,7 +77,7 @@
  
         $scope.logout = function() {
             Main.logout(function() {
-                window.location = "/"
+                $location.path('/login');
             }, function() {
                 alert("Failed to logout!");
             });

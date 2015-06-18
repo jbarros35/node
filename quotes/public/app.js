@@ -19,14 +19,25 @@ define([
 		'angularRestfulAuth'
 	]).
 	config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
-		$routeProvider.otherwise({redirectTo: '/home'});
+		$routeProvider.otherwise({redirectTo: '/404'});
+		
+		//$http.defaults.headers.common['x-access-token']= $localStorage.token;
+		
 		$httpProvider.interceptors.push(['$q', '$location', '$localStorage', function($q, $location, $localStorage) {
             return {
-                'request': function (config) {					
+                'request': function (config) {	
+					// append token to header
                     config.headers = config.headers || {};
-                    if ($localStorage.token) {
-                        config.headers.Authorization = 'Bearer ' + $localStorage.token;
-                    }
+					// check if token exists
+                    if ($localStorage.token) {						
+                        config.headers.Authorization = 'Bearer ' + $localStorage.token;					
+						// append token to header						
+						config.headers['x-access-token'] = $localStorage.token;
+						//console.log('headers:'+config.headers['x-access-token']);
+                    } else {
+						console.log('no token provided');
+						$location.path('/login');
+					}
                     return config;
                 },
                 'responseError': function(response) {
