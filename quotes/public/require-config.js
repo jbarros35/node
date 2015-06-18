@@ -24,8 +24,8 @@ require.config({
 		angularMocks: 'bower_components/angular-mocks/angular-mocks',
 		'angular-resource': 'bower_components/angular-resource/angular-resource',
 		text: 'bower_components/requirejs-text/text',		
-		'jQuery': 'assets/js/jquery'
-
+		'jQuery': 'assets/js/jquery',
+		'ngStorage': 'bower_components/ngstorage/ngStorage'
 	},
 	shim: {
 		'angular' : {'exports' : 'angular'},
@@ -36,6 +36,7 @@ require.config({
 		},
 		'ui-bootstrap': ['angular'],
 		'angular-resource': ['angular'],
+		'ngStorage': ['angular'],
 		'jQuery': {'exports' : 'jQuery'}
 	},
 	priority: [
@@ -61,5 +62,5 @@ require([
 );
 
 var globalConfig = {
-	    serviceURL: 'http://localhost:3000'
+	    serviceURL: 'http://localhost:3000/api'
 	};
