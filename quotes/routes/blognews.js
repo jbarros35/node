@@ -2,14 +2,48 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
+var jwt    = require('jsonwebtoken');
 
 // INIT QUOTES
 // get all BlogNews
 router.get('/', function(req, res) {
-	models.BlogNews.findAll({limit:10}).then(function(blognews) {        
+	models.BlogNews.findAll({limit:10}).then(function(blognews) {
 		res.json(blognews);
     });		 
 });
+
+router.use(function(req, res, next) {
+
+  // check header or url parameters or post parameters for token
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+  // decode token
+  if (token) {
+	var secret = require('./routes/security');
+    // verifies secret and checks exp
+    jwt.verify(token, secret.key, function(err, decoded) {      
+      if (err) {
+        return res.json({ success: false, message: 'Failed to authenticate token.' });    
+      } else {
+		console.log('token validated');
+        // if everything is good, save to request for use in other routes
+        req.decoded = decoded;    
+        next();
+      }
+    });
+
+  } else {
+
+    // if there is no token
+    // return an error
+    return res.status(403).send({ 
+        success: false, 
+        message: 'No token provided.' 
+    });
+    
+  }
+});
+
 // get BlogNews
 router.get('/:id', function(req, res) {
 	models.BlogNews.findById(req.params.id).then(function(blognews) {        
@@ -46,7 +80,7 @@ router.delete('/:id', function(req, res) {
 });
 // update quote
 router.put('/:id', function(req, res) {
-	models.Quotes.findById(req.params.id).then(function(blognews){
+	models.BlogNews.findById(req.params.id).then(function(blognews){
 		if (blognews) {
 			blognews.updateAttributes({
 				author: req.body.author,
@@ -58,8 +92,7 @@ router.put('/:id', function(req, res) {
 				shortdescription: req.body.shortdescription,
 				text: req.body.text
 				}
-			).then(function(result){
-				console.log(result);
+			).then(function(result){				
 				res.json('update ok');
 			});
 		} else {
