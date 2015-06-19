@@ -16,16 +16,16 @@ if(window.__karma__) {
 	});
 }
 
-require.config({
+require.config({	
 	paths: {
-		angular: 'bower_components/angular/angular',
-		angularRoute: 'bower_components/angular-route/angular-route',
+		angular: 		'bower_components/angular/angular',
+		angularRoute:   'bower_components/angular-route/angular-route',
 		'ui-bootstrap': 'bower_components/angular-bootstrap/ui-bootstrap-tpls',
-		angularMocks: 'bower_components/angular-mocks/angular-mocks',
+		angularMocks:   'bower_components/angular-mocks/angular-mocks',
 		'angular-resource': 'bower_components/angular-resource/angular-resource',
-		text: 'bower_components/requirejs-text/text',		
-		'jQuery': 'assets/js/jquery',
-		'ngStorage': 'bower_components/ngstorage/ngStorage'
+		text: 		 'bower_components/requirejs-text/text',		
+		'jQuery':    'assets/js/jquery',
+		'ngStorage': 'bower_components/ngstorage/ngStorage'			
 	},
 	shim: {
 		'angular' : {'exports' : 'angular'},
@@ -37,7 +37,7 @@ require.config({
 		'ui-bootstrap': ['angular'],
 		'angular-resource': ['angular'],
 		'ngStorage': ['angular'],
-		'jQuery': {'exports' : 'jQuery'}
+		'jQuery': {'exports' : 'jQuery'}		
 	},
 	priority: [
 		"angular"
@@ -49,9 +49,9 @@ require.config({
 
 require([
 	'angular',
-	'jQuery',
+	'jQuery',	
 	'app'
-	], function(angular, app) {
+	], function(angular, app) {		
 		var $html = angular.element(document.getElementsByTagName('html')[0]);
 		angular.element().ready(function() {
 			console.log('bootstrap ok');

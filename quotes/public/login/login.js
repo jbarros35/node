@@ -3,7 +3,8 @@
 	'angular',
 	'angularRoute',
 	'ngStorage'
-], function(angular) {
+], function(angular) {	
+  
 /* Controllers */
  var login = angular.module('angularRestfulAuth', ['ngRoute','ngStorage']);
  
@@ -14,15 +15,18 @@
 		});
 	}]);
 	
-	login.controller('loginCtrl', ['$rootScope', '$scope', '$location', '$localStorage', 'Main', 'flash',
+	login.controller('loginCtrl', ['$rootScope', '$scope', '$location', '$localStorage', 'Main', 'flash', 
 		function($rootScope, $scope, $location, $localStorage, Main, flash) {
 		$scope.flash = flash;
         $scope.signin = function() {
-            var formData = {
+			var hash = CryptoJS.SHA256($scope.password);            
+			var encrypted = hash.toString(CryptoJS.enc.Base64);
+			var formData = {
                 email: $scope.email,
-                password: $scope.password
-            }
-			console.log(formData);
+                password: encrypted
+            };
+			
+			//console.log(encrypted);
             Main.signin(formData, 
 			// success
 			function(res) {
