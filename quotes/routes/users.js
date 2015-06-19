@@ -26,13 +26,16 @@ router.post('/authenticate', function(req, res) {
 			var token = jwt.sign(user, secret.key, {
 			  expiresInMinutes: 1440 // expires in 24 hours
 			});
-
-			// return the information including token as JSON
-			res.json({
-			  success: true,
-			  message: 'Enjoy your token!',
-			  token: token
+			// persist token state
+			user.updateAttributes({token:token}).then(function(result){
+				// return the information including token as JSON
+				res.json({
+				  success: true,
+				  message: 'Enjoy your token!',
+				  token: token
+				});
 			});
+			
 		} else {
 			res.json({ success: false, message: 'Authentication failed. Wrong password.' });	
 		}
@@ -40,9 +43,10 @@ router.post('/authenticate', function(req, res) {
 	
 });
 
-router.get('/me', ensureAuthorized, function(req, res) {
-    models.User.findOne({token: req.token}, function(err, user) {
-        if (err) {
+router.get('/me', secret.ensureAuthorized, function(req, res) {
+    models.User.findOne({token: req.token})
+		.then(function(user) {
+        if (!user) {
             res.json({
                 type: false,
                 data: "Error occured: " + err
@@ -50,21 +54,13 @@ router.get('/me', ensureAuthorized, function(req, res) {
         } else {
             res.json({
                 type: true,
-                data: user
+                data: {
+					id:user.id,
+					email:user.email
+				}
             });
         }
-    });
+		});
 });
-function ensureAuthorized(req, res, next) {
-    var bearerToken;
-    var bearerHeader = req.headers["authorization"];
-    if (typeof bearerHeader !== 'undefined') {
-        var bearer = bearerHeader.split(" ");
-        bearerToken = bearer[1];
-        req.token = bearerToken;
-        next();
-    } else {
-        res.send(403);
-    }
-}
+
 module.exports = router;

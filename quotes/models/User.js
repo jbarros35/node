@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
 	},
 	email: DataTypes.STRING,
     password: DataTypes.STRING,
-    token: DataTypes.STRING     
+    token: DataTypes.TEXT     
   }
   , {
     timestamps: false
