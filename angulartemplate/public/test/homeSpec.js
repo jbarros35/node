@@ -2,10 +2,9 @@
  * Created by jose on 7/12/2015.
  */
 /*global module, inject */
-'use strict';
 
-define(['home', 'angularMocks'], function(app) {
-
+define(['home', 'angularMocks','ngStorage'], function(app) {
+    'use strict';
     describe('homeController', function () {
         var scope, $location, createController;
         beforeEach(module('homeApp'));
