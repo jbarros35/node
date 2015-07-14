@@ -6,16 +6,18 @@
 define(['home', 'angularMocks',], function(app) {
     'use strict';
     describe('homeController', function () {
-        var scope, $location, createController;
+        var scope, $location, createController, window;
         beforeEach(module('homeApp'));
 
-        beforeEach(inject(function ($rootScope, $controller, _$location_) {
+        beforeEach(inject(function ($rootScope, $controller, _$location_, _$window_) {
             $location = _$location_;
             scope = $rootScope.$new();
-
+            window = _$window_;
+            //console.log('window inject');
             createController = function () {
                 return $controller('homeController', {
-                    '$scope': scope
+                    $scope: scope,
+                    $window : window
                 });
             };
         }));
@@ -25,6 +27,12 @@ define(['home', 'angularMocks',], function(app) {
             $location.path('/');
             expect($location.path()).toBe('/');
             expect(scope.message).toEqual('This is Add new order screen');
+        });
+
+        it('store message', function() {
+            var controller = createController();
+            scope.storeValue();
+            expect(scope.getValue()).toEqual('This is Add new order screen');
         });
     });
 

@@ -22,8 +22,17 @@ define(['angular', 'angularRoute'], function(angular) {
         }
     ]);
 
-    app.controller('homeController', function ($scope) {
+    app.controller('homeController', function ($scope, $window) {
+        if ($window) {
+            console.log('window is defined');
+        }
         $scope.message = 'This is Add new order screen';
+        $scope.storeValue = function() {
+            $window.localStorage['value'] = $scope.message;
+        }
+        $scope.getValue = function() {
+            return $window.localStorage['value'];
+        }
     });
 
     return app;
