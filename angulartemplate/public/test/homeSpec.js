@@ -3,7 +3,7 @@
  */
 /*global module, inject */
 
-define(['home', 'angularMocks','ngStorage'], function(app) {
+define(['home', 'angularMocks',], function(app) {
     'use strict';
     describe('homeController', function () {
         var scope, $location, createController;

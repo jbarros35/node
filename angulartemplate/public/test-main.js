@@ -15,7 +15,7 @@ require.config({
     angular: "../bower_components/angular/angular",
     angularRoute: "../bower_components/angular-route/angular-route",
     angularMocks: "../bower_components/angular-mocks/angular-mocks",
-    ngStorage:'../bower_components/ngstorage/ngStorage',
+    //ngStorage:'../bower_components/ngstorage/ngStorage',
   },
   shim: {
     'angular' : {'exports' : 'angular'},
@@ -24,7 +24,7 @@ require.config({
       deps:['angular'],
       'exports':'angular.mock'
     },
-    'ngStorage': ['angular'],
+   // 'ngStorage': ['angular'],
   },
   priority: [
     "angular"

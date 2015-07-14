@@ -18,7 +18,7 @@ module.exports = function(config) {
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/angular-route/angular-route.js',
-      'bower_components/ngstorage/ngStorage.js',
+      //'bower_components/ngstorage/ngStorage.js',
       {pattern: 'javascripts/*.js', included: false},
       {pattern: 'test/**/*Spec.js', included: false},
       'test-main.js',
